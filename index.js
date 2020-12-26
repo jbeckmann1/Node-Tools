@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const chalk = require('chalk');
 // Method#2
 // const util = require('util');
 // const lstat = util.promisify(fs.lstat);
@@ -38,6 +39,11 @@ fs.readdir(process.cwd(), async (err, filenames) => {
 	const allStats = await Promise.all(statPromises);
 	for (let stats of allStats) {
 		const index = allStats.indexOf(stats);
-		console.log(filenames[index], stats.isFile());
+		if (stats.isFile()) {
+			console.log(filenames[index]);
+		}
+		else {
+			console.log(chalk.bold(filenames[index]));
+		}
 	}
 });
