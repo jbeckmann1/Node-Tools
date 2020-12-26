@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jbeckmann1/Node-Tools#readme",
   "dependencies": {
+    "chalk": "^4.1.0",
     "fs": "0.0.1-security"
   }
 }
