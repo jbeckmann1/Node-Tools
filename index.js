@@ -36,15 +36,21 @@ fs.readdir(targetDir, async (err, filenames) => {
 	// };
 	//"Good Solution"
 	const statPromises = filenames.map((filename) => {
+		//Einen absoluten Pfad hersttellen
 		return lstat(path.join(targetDir, filename));
 	});
+	//Promise wird resolved wenn die Stats von allen Dateien/Ordnern zurückgegeben
 	const allStats = await Promise.all(statPromises);
+
 	for (let stats of allStats) {
+		//Den index bekommen um wiederzuverwenden in if statement
 		const index = allStats.indexOf(stats);
+		//Entscheiden ob file oder nicht wenn ja ausschreiben
 		if (stats.isFile()) {
 			console.log(filenames[index]);
 		}
 		else {
+			//Ansonsten fett drucken
 			console.log(chalk.bold(filenames[index]));
 		}
 	}
